@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://fonctionWebService.testBase.com/" xmlns:tns="http://fonctionWebService.testBase.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="afficherBase" type="tns:afficherBase"/>
+
+  <xs:element name="afficherBaseResponse" type="tns:afficherBaseResponse"/>
+
+  <xs:element name="create" type="tns:create"/>
+
+  <xs:element name="createBDD" type="tns:createBDD"/>
+
+  <xs:element name="createBDDResponse" type="tns:createBDDResponse"/>
+
+  <xs:element name="createResponse" type="tns:createResponse"/>
+
+  <xs:element name="modifier" type="tns:modifier"/>
+
+  <xs:element name="modifier2" type="tns:modifier2"/>
+
+  <xs:element name="modifier2Response" type="tns:modifier2Response"/>
+
+  <xs:element name="modifierResponse" type="tns:modifierResponse"/>
+
+  <xs:element name="supprimer" type="tns:supprimer"/>
+
+  <xs:element name="supprimerResponse" type="tns:supprimerResponse"/>
+
+  <xs:complexType name="create">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg3" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="modifier2">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:anyType" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:anyType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modifier2Response">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="createBDD">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="createBDDResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="afficherBase">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="afficherBaseResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="supprimer">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="supprimerResponse">
+    <xs:sequence/>
+  </xs:complexType>
+
+  <xs:complexType name="modifier">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:long"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:anyType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modifierResponse">
+    <xs:sequence/>
+  </xs:complexType>
+</xs:schema>
+
