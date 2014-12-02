@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <xs:schema version="1.0" targetNamespace="http://fonctionWebService.testBase.com/" xmlns:tns="http://fonctionWebService.testBase.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+  <xs:element name="additionner" type="tns:additionner"/>
+
+  <xs:element name="additionnerResponse" type="tns:additionnerResponse"/>
+
   <xs:element name="afficherBase" type="tns:afficherBase"/>
 
   <xs:element name="afficherBaseResponse" type="tns:afficherBaseResponse"/>
@@ -58,12 +62,27 @@
     <xs:sequence/>
   </xs:complexType>
 
+  <xs:complexType name="additionner">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:int"/>
+      <xs:element name="arg1" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="additionnerResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+
   <xs:complexType name="afficherBase">
     <xs:sequence/>
   </xs:complexType>
 
   <xs:complexType name="afficherBaseResponse">
-    <xs:sequence/>
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
   </xs:complexType>
 
   <xs:complexType name="supprimer">

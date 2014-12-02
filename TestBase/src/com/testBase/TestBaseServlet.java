@@ -12,20 +12,6 @@ import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
 
-
-
-
-
-import com.google.appengine.api.datastore.DatastoreService;
-import com.google.appengine.api.datastore.DatastoreServiceFactory;
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Key;
-import com.google.appengine.api.datastore.KeyFactory;
-import com.google.appengine.api.datastore.PreparedQuery;
-import com.google.appengine.api.datastore.Query;
-import com.testBase.soapHandler.TestBaseSoapHandler;
-
-
 public class TestBaseServlet extends HttpServlet {
 	
 	static MessageFactory messageFactory;
@@ -45,11 +31,12 @@ public class TestBaseServlet extends HttpServlet {
 		try {
 			MimeHeaders headers = getHeaders(req);
 			InputStream is = req.getInputStream();
+			
 			SOAPMessage soapRequest = messageFactory.createMessage(headers,is);
 			
 			// Gérer soapRequest
 			SOAPMessage soapResponse = soapHandler.handleSOAPRequest(soapRequest);
-			
+			System.out.println("coucou");
 			// Créer HttpServletResponse
 			resp.setStatus(HttpServletResponse.SC_OK);
 			resp.setContentType("text/xml;charset=\"utf-8\"");
@@ -72,14 +59,14 @@ public class TestBaseServlet extends HttpServlet {
 		while (headerNames.hasMoreElements()) {
 			String headerName = (String) headerNames.nextElement();
 			String headerValue = req.getHeader(headerName);
-			StringTokenizer values = new StringTokenizer(headerValue);
+			StringTokenizer values = new StringTokenizer(headerValue,",");
 			while (values.hasMoreTokens())
 			{
 				headers.addHeader(headerName, values.nextToken().trim());
 			}
 		}
 		
-		System.out.println("coucou");
+	
 		return headers;
 
 	}

@@ -1,13 +1,11 @@
-package com.testBase.soapHandler;
+package com.testBase;
 
-import java.io.IOException;
-import java.io.InputStream;
+
 import java.util.Iterator;
 
 import javax.xml.bind.JAXB;
 import javax.xml.namespace.QName;
 import javax.xml.soap.MessageFactory;
-import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SAAJResult;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPElement;
@@ -16,27 +14,25 @@ import javax.xml.soap.SOAPFault;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.transform.dom.DOMSource;
 
+import com.testBase.fonctionWebService.jaxws.Additionner;
 import com.testBase.fonctionWebService.jaxws.AfficherBase;
 import com.testBase.soapAdapter.TestBaseSoapAdapter;
 
 public class TestBaseSoapHandler {
 
-		private static final String NAMESPACE_URI = "http://soapHandler.testBase.com";
+		private static final String NAMESPACE_URI = "http://fonctionWebService.testBase.com/";
 		private static final QName AfficherBase_QNAME = new QName(NAMESPACE_URI,"afficherBase");
+		private static final QName Additionner_QNAME = new QName(NAMESPACE_URI,"additionner");
+		
 		
 		private MessageFactory messageFactory;
 		
 		private TestBaseSoapAdapter adapter;
 		
-		public TestBaseSoapHandler()
+		public TestBaseSoapHandler() throws SOAPException
 		{
-			try {
-				messageFactory = MessageFactory.newInstance();
-			} catch (SOAPException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				
+
+			messageFactory = MessageFactory.newInstance();
 			adapter = new TestBaseSoapAdapter();
 		}
 		
@@ -54,11 +50,21 @@ public class TestBaseSoapHandler {
 					SOAPElement soapElement = (SOAPElement) next;
 					QName qname = soapElement.getElementQName();
 					
+					System.out.println(qname.toString());
+					System.out.println(Additionner_QNAME.toString());
+					
 					if (AfficherBase_QNAME.equals(qname))
 					{
 						response = appelerAfficherBase(soapElement);
 						break;
 					}
+					
+					if (Additionner_QNAME.equals(qname))
+					{
+						response = appelerAdditionner(soapElement);
+						break;
+					}
+					
 				}
 				
 			}
@@ -83,6 +89,12 @@ public class TestBaseSoapHandler {
 		private Object appelerAfficherBase(SOAPElement soapElement) {
 			AfficherBase afficherBase = JAXB.unmarshal(new DOMSource(soapElement), AfficherBase.class);
 			return adapter.adapterAfficherBase(afficherBase);
+			
+		}
+		
+		private Object appelerAdditionner(SOAPElement soapElement) {
+			Additionner additionner = JAXB.unmarshal(new DOMSource(soapElement), Additionner.class);
+			return adapter.adapterAdditionner(additionner);
 			
 		}
 		

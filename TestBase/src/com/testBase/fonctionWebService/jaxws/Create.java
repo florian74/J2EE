@@ -15,7 +15,7 @@ import javax.xml.bind.annotation.XmlType;
     "arg2",
     "arg3"
 })
-public class Create {       
+public class Create {
 
     @XmlElement(name = "arg0", namespace = "")
     private String arg0;

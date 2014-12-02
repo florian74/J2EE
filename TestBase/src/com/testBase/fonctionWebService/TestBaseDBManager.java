@@ -1,6 +1,8 @@
 package com.testBase.fonctionWebService;
 
 import java.awt.image.FilteredImageSource;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -96,9 +98,10 @@ public class TestBaseDBManager {
 	}
 	
 	@WebMethod
-	public void afficherBase() {
+	public String afficherBase() {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-		
+		List<String> str = new ArrayList<String>();
+		String s = "coucou";
 		Query requete = new Query("T_Auteur");
 		
 		PreparedQuery resultat = ds.prepare(requete);
@@ -107,8 +110,17 @@ public class TestBaseDBManager {
 			String nom = un_auteur.getProperty("Nom").toString();
 			String prenom = un_auteur.getProperty("Prenom").toString();
 			String domicile = un_auteur.getProperty("Domicile").toString();
-			System.out.println(nom + " / " + prenom + " / " + domicile);
+			s = (nom + " / " + prenom + " / " + domicile);
+			
 		}
+		
+		return s;
+	}
+	
+	@WebMethod
+	public int additionner(int a, int b)
+	{
+		return a+b;
 	}
 	
 	@WebMethod
