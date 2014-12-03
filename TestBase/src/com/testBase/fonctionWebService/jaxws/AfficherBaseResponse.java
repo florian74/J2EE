@@ -1,6 +1,7 @@
 
 package com.testBase.fonctionWebService.jaxws;
 
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -13,14 +14,14 @@ import javax.xml.bind.annotation.XmlType;
 public class AfficherBaseResponse {
 
     @XmlElement(name = "return", namespace = "")
-    private String _return;
+    private List<String> _return;
 
     /**
      * 
      * @return
-     *     returns String
+     *     returns List<String>
      */
-    public String getReturn() {
+    public List<String> getReturn() {
         return this._return;
     }
 
@@ -29,7 +30,7 @@ public class AfficherBaseResponse {
      * @param _return
      *     the value for the _return property
      */
-    public void setReturn(String _return) {
+    public void setReturn(List<String> _return) {
         this._return = _return;
     }
 

@@ -15,10 +15,8 @@ public class TestBaseSoapAdapter {
 		
 		
 		AfficherBaseResponse resp = new AfficherBaseResponse();
-		//resp.setReturn(tbdbm.afficherBase());
-		List<String> str = new ArrayList<String>();
-		str.add("foo");
-		resp.setReturn("foo");
+		resp.setReturn(tbdbm.afficherBase());
+
 		return resp;
 		
 	}
@@ -30,10 +28,39 @@ public class TestBaseSoapAdapter {
 		int j = request.getArg1();
 		
 		AdditionnerResponse resp = new AdditionnerResponse();
-		//resp.setReturn(tbdbm.afficherBase());
 		
 
 		resp.setReturn(tbdbm.additionner(i, j));
+		return resp;
+		
+	}
+	
+	public CreateResponse adapterCreate( Create request)
+	{
+		
+		String numero = request.getArg0();
+		String nom = request.getArg1();
+		String prenom = request.getArg2();
+		String domicile = request.getArg3();
+		
+		CreateResponse resp = new CreateResponse();
+		
+
+		resp.setReturn(tbdbm.create(numero, nom , prenom, domicile));
+		return resp;
+		
+	}
+	
+	public SupprimerResponse adapterSupprimer( Supprimer request)
+	{
+		
+		String champ=request.getArg0();
+		String valeur=request.getArg1();
+		
+		SupprimerResponse resp = new SupprimerResponse();
+		resp.setReturn(tbdbm.supprimer(champ, valeur));
+
+		
 		return resp;
 		
 	}

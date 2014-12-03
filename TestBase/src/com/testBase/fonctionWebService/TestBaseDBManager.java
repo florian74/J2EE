@@ -3,6 +3,7 @@ package com.testBase.fonctionWebService;
 import java.awt.image.FilteredImageSource;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -93,16 +94,17 @@ public class TestBaseDBManager {
 		PreparedQuery resultat = ds.prepare(requete);
 		
 		for(Entity un_auteur: resultat.asIterable()) {
-			modifier((long) un_auteur.getProperty("ID/Name"), champ , newValeur);
+			modifier((long) un_auteur.getProperty("Numero"), champ , newValeur);
 		}
 	}
 	
 	@WebMethod
-	public String afficherBase() {
+	public List<String> afficherBase() {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		List<String> str = new ArrayList<String>();
-		String s = "coucou";
+
 		Query requete = new Query("T_Auteur");
+		
 		
 		PreparedQuery resultat = ds.prepare(requete);
 		
@@ -110,11 +112,13 @@ public class TestBaseDBManager {
 			String nom = un_auteur.getProperty("Nom").toString();
 			String prenom = un_auteur.getProperty("Prenom").toString();
 			String domicile = un_auteur.getProperty("Domicile").toString();
-			s = (nom + " / " + prenom + " / " + domicile);
+			String Numero = un_auteur.getProperty("Numero").toString();
+
+			str.add(  Numero + " / " + nom + " / " + prenom + " / " + domicile);
 			
 		}
 		
-		return s;
+		return str;
 	}
 	
 	@WebMethod
@@ -124,10 +128,10 @@ public class TestBaseDBManager {
 	}
 	
 	@WebMethod
-	public void supprimer(String champ, String valeur)
+	public String supprimer(String champ, String valeur)
 	{
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-
+		String str = "";
 		Query requete = new Query("T_Auteur").addFilter(champ,FilterOperator.EQUAL, valeur);
 		
 		PreparedQuery resultat = ds.prepare(requete);
@@ -136,27 +140,40 @@ public class TestBaseDBManager {
 			
 			try {
 				
-				Key cle = KeyFactory.createKey("T_Auteur",(long)  un_auteur.getProperty("ID/name"));
+				Key cle = KeyFactory.createKey("T_Auteur",(long)  un_auteur.getProperty("Numero"));
 				//Entity AuteurConcerne = ds.get(cle);
 				ds.delete(cle);
+				str = "suppression réussit";
 			}
 			catch (Exception e)
 			{
+				str = "il n'y a pas d'element possédent ce champ ";
 			}
 		}
+		
+		return str;
 	}
 	
 	@WebMethod
-	public void create(String Numero, String Nom , String Prenom, String Domicile)
+	public String create(String Numero, String Nom , String Prenom, String Domicile)
 	{
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-
+		String res = "ajout réussit";
 		Entity unAuteur = new Entity("T_Auteur");
-		unAuteur.setProperty("Numero", Numero);
-		unAuteur.setProperty("Nom", Nom);
-		unAuteur.setProperty("Prenom", Prenom);
-		unAuteur.setProperty("Domicile", Domicile);
-		ds.put(unAuteur);
+		Query requete = new Query("T_Auteur").addFilter("Numero",FilterOperator.EQUAL, Numero);
+		PreparedQuery resultat = ds.prepare(requete);
+		if (resultat.countEntities() == 0)
+		{
+			unAuteur.setProperty("Numero", Numero);
+			unAuteur.setProperty("Nom", Nom);
+			unAuteur.setProperty("Prenom", Prenom);
+			unAuteur.setProperty("Domicile", Domicile);
+			ds.put(unAuteur);
+		}
+		else
+			res = "Le numero est déjà pris";
+		
+		return res;
 	}
 	
 }

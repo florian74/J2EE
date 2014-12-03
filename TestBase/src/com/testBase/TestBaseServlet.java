@@ -11,6 +11,8 @@ import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 
+import com.testBase.soapHandler.TestBaseSoapHandler;
+
 
 public class TestBaseServlet extends HttpServlet {
 	
@@ -36,7 +38,6 @@ public class TestBaseServlet extends HttpServlet {
 			
 			// Gérer soapRequest
 			SOAPMessage soapResponse = soapHandler.handleSOAPRequest(soapRequest);
-			System.out.println("coucou");
 			// Créer HttpServletResponse
 			resp.setStatus(HttpServletResponse.SC_OK);
 			resp.setContentType("text/xml;charset=\"utf-8\"");

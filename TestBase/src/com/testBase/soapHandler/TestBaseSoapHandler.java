@@ -1,4 +1,4 @@
-package com.testBase;
+package com.testBase.soapHandler;
 
 
 import java.util.Iterator;
@@ -16,6 +16,8 @@ import javax.xml.transform.dom.DOMSource;
 
 import com.testBase.fonctionWebService.jaxws.Additionner;
 import com.testBase.fonctionWebService.jaxws.AfficherBase;
+import com.testBase.fonctionWebService.jaxws.Create;
+import com.testBase.fonctionWebService.jaxws.Supprimer;
 import com.testBase.soapAdapter.TestBaseSoapAdapter;
 
 public class TestBaseSoapHandler {
@@ -23,7 +25,8 @@ public class TestBaseSoapHandler {
 		private static final String NAMESPACE_URI = "http://fonctionWebService.testBase.com/";
 		private static final QName AfficherBase_QNAME = new QName(NAMESPACE_URI,"afficherBase");
 		private static final QName Additionner_QNAME = new QName(NAMESPACE_URI,"additionner");
-		
+		private static final QName Create_QNAME = new QName(NAMESPACE_URI,"create");
+		private static final QName Supprimer_QNAME = new QName(NAMESPACE_URI,"supprimer");
 		
 		private MessageFactory messageFactory;
 		
@@ -50,8 +53,6 @@ public class TestBaseSoapHandler {
 					SOAPElement soapElement = (SOAPElement) next;
 					QName qname = soapElement.getElementQName();
 					
-					System.out.println(qname.toString());
-					System.out.println(Additionner_QNAME.toString());
 					
 					if (AfficherBase_QNAME.equals(qname))
 					{
@@ -63,6 +64,15 @@ public class TestBaseSoapHandler {
 					{
 						response = appelerAdditionner(soapElement);
 						break;
+					}
+					
+					if (Create_QNAME.equals(qname))
+					{
+						response = appelerCreate(soapElement);
+					}
+					if (Supprimer_QNAME.equals(qname))
+					{
+						response = appelerSupprimer(soapElement);
 					}
 					
 				}
@@ -98,5 +108,15 @@ public class TestBaseSoapHandler {
 			
 		}
 		
+		private Object appelerCreate(SOAPElement soapElement) {
+			Create create = JAXB.unmarshal(new DOMSource(soapElement), Create.class);
+			return adapter.adapterCreate(create);
+			
+		}
+		
+		private Object appelerSupprimer(SOAPElement soapElement) {
+			Supprimer supprimer = JAXB.unmarshal(new DOMSource(soapElement), Supprimer.class);
+			return adapter.adapterSupprimer(supprimer);
+		}
 		
 }
