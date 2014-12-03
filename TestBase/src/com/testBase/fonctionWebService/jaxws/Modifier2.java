@@ -19,9 +19,9 @@ public class Modifier2 {
     @XmlElement(name = "arg0", namespace = "")
     private String arg0;
     @XmlElement(name = "arg1", namespace = "")
-    private Object arg1;
+    private String arg1;
     @XmlElement(name = "arg2", namespace = "")
-    private Object arg2;
+    private String arg2;
 
     /**
      * 
@@ -44,9 +44,9 @@ public class Modifier2 {
     /**
      * 
      * @return
-     *     returns Object
+     *     returns String
      */
-    public Object getArg1() {
+    public String getArg1() {
         return this.arg1;
     }
 
@@ -55,16 +55,16 @@ public class Modifier2 {
      * @param arg1
      *     the value for the arg1 property
      */
-    public void setArg1(Object arg1) {
+    public void setArg1(String arg1) {
         this.arg1 = arg1;
     }
 
     /**
      * 
      * @return
-     *     returns Object
+     *     returns String
      */
-    public Object getArg2() {
+    public String getArg2() {
         return this.arg2;
     }
 
@@ -73,7 +73,7 @@ public class Modifier2 {
      * @param arg2
      *     the value for the arg2 property
      */
-    public void setArg2(Object arg2) {
+    public void setArg2(String arg2) {
         this.arg2 = arg2;
     }
 

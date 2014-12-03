@@ -85,17 +85,45 @@ public class TestBaseDBManager {
 	}
 	
 	@WebMethod
-	public void modifier2(String champ, Object oldValeur, Object newValeur)
+	public String modifier2(String champ, String oldValeur, String newValeur)
 	{
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		
 		Query requete = new Query("T_Auteur").addFilter(champ, FilterOperator.EQUAL, oldValeur);
 		
 		PreparedQuery resultat = ds.prepare(requete);
-		
+		String result = "la modification a échoué";
 		for(Entity un_auteur: resultat.asIterable()) {
-			modifier((long) un_auteur.getProperty("Numero"), champ , newValeur);
+			
+			
+			//modifier((long) un_auteur.getProperty("Numero"), champ , newValeur);
+			Key cle = un_auteur.getKey();
+			
+			// récupération des données de l'ancienne entité
+			String nom = un_auteur.getProperty("Nom").toString();
+			String prenom = un_auteur.getProperty("Prenom").toString();
+			String domicile = un_auteur.getProperty("Domicile").toString();
+			String numero = un_auteur.getProperty("Numero").toString();
+			
+			// suppression de l'entité
+			ds.delete(cle);
+			
+			// création d'une nouvelle entité
+			Entity auteur = new Entity("T_Auteur");
+			auteur.setProperty("Numero", numero);
+			auteur.setProperty("Nom", nom );
+			auteur.setProperty("Prenom", prenom);
+			auteur.setProperty("Domicile", domicile);
+			
+			// modification du champ
+			auteur.setProperty(champ, newValeur);
+			
+			ds.put(auteur);
+			
+			result = "la modification a réussi";
+			
 		}
+		return result;
 	}
 	
 	@WebMethod
@@ -109,12 +137,16 @@ public class TestBaseDBManager {
 		PreparedQuery resultat = ds.prepare(requete);
 		
 		for(Entity un_auteur: resultat.asIterable()) {
-			String nom = un_auteur.getProperty("Nom").toString();
-			String prenom = un_auteur.getProperty("Prenom").toString();
-			String domicile = un_auteur.getProperty("Domicile").toString();
-			String Numero = un_auteur.getProperty("Numero").toString();
-
-			str.add(  Numero + " / " + nom + " / " + prenom + " / " + domicile);
+			
+			//affichage champ par champ
+			//String nom = un_auteur.getProperty("Nom").toString();
+			//String prenom = un_auteur.getProperty("Prenom").toString();
+			//String domicile = un_auteur.getProperty("Domicile").toString();
+			//String Numero = un_auteur.getProperty("Numero").toString();
+			//str.add( Numero + " / " + nom + " / " + prenom + " / " + domicile);
+			
+			//affichage de l'objet direct
+			str.add( "" + un_auteur);
 			
 		}
 		
@@ -124,6 +156,7 @@ public class TestBaseDBManager {
 	@WebMethod
 	public int additionner(int a, int b)
 	{
+		// méthode de test du web service
 		return a+b;
 	}
 	
@@ -136,18 +169,19 @@ public class TestBaseDBManager {
 		
 		PreparedQuery resultat = ds.prepare(requete);
 		
+		if (resultat.countEntities() == 0)
+			str = "la valeur " + valeur + " n'apparait pas dans la colonne " + champ + ". La suppression a échouée" ;
 		for(Entity un_auteur: resultat.asIterable()) {
 			
 			try {
 				
-				Key cle = KeyFactory.createKey("T_Auteur",(long)  un_auteur.getProperty("Numero"));
-				//Entity AuteurConcerne = ds.get(cle);
+				Key cle = un_auteur.getKey();
 				ds.delete(cle);
 				str = "suppression réussit";
 			}
 			catch (Exception e)
 			{
-				str = "il n'y a pas d'element possédent ce champ ";
+				str = "une erreur est survenue ";
 			}
 		}
 		

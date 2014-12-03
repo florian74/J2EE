@@ -17,6 +17,7 @@ import javax.xml.transform.dom.DOMSource;
 import com.testBase.fonctionWebService.jaxws.Additionner;
 import com.testBase.fonctionWebService.jaxws.AfficherBase;
 import com.testBase.fonctionWebService.jaxws.Create;
+import com.testBase.fonctionWebService.jaxws.Modifier2;
 import com.testBase.fonctionWebService.jaxws.Supprimer;
 import com.testBase.soapAdapter.TestBaseSoapAdapter;
 
@@ -27,6 +28,7 @@ public class TestBaseSoapHandler {
 		private static final QName Additionner_QNAME = new QName(NAMESPACE_URI,"additionner");
 		private static final QName Create_QNAME = new QName(NAMESPACE_URI,"create");
 		private static final QName Supprimer_QNAME = new QName(NAMESPACE_URI,"supprimer");
+		private static final QName Modifier2_QNAME = new QName(NAMESPACE_URI,"modifier2");
 		
 		private MessageFactory messageFactory;
 		
@@ -75,6 +77,11 @@ public class TestBaseSoapHandler {
 						response = appelerSupprimer(soapElement);
 					}
 					
+					if (Modifier2_QNAME.equals(qname))
+					{
+						response = appelerModifier2(soapElement);
+					}
+					
 				}
 				
 			}
@@ -117,6 +124,11 @@ public class TestBaseSoapHandler {
 		private Object appelerSupprimer(SOAPElement soapElement) {
 			Supprimer supprimer = JAXB.unmarshal(new DOMSource(soapElement), Supprimer.class);
 			return adapter.adapterSupprimer(supprimer);
+		}
+		
+		private Object appelerModifier2(SOAPElement soapElement) {
+			Modifier2 modifier2 = JAXB.unmarshal(new DOMSource(soapElement), Modifier2.class);
+			return adapter.adapterModifier2(modifier2);
 		}
 		
 }

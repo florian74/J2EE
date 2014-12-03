@@ -65,5 +65,21 @@ public class TestBaseSoapAdapter {
 		
 	}
 	
+	public Modifier2Response adapterModifier2( Modifier2 request)
+	{
+		
+		String champ=request.getArg0();
+		String oldValeur=request.getArg1();
+		String newValeur=request.getArg2();
+		
+		Modifier2Response resp = new Modifier2Response();
+		resp.setReturn(tbdbm.modifier2(champ, oldValeur, newValeur));
+
+		
+		return resp;
+		
+	}
+	
+	
 	
 }
