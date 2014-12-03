@@ -22,7 +22,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 public class TestBaseDBManager {
 
 	@WebMethod
-	public void createBDD() {
+	public void createStubAuteur() {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 
 		Entity unAuteur = new Entity("T_Auteur");
@@ -61,31 +61,9 @@ public class TestBaseDBManager {
 		ds.put(unAuteur);
 	}
 	
-	@WebMethod
-	public void modifier(long clef, String champ, Object valeur) {
-		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
-		Key cle = KeyFactory.createKey("T_Auteur", clef);
-		try {
-			Entity AuteurConcerne = ds.get(cle);
-			System.out.println("Element trouve =" + AuteurConcerne);
-			
-			ds.delete(cle);
-			Entity unAuteur = new Entity("T_Auteur", clef);
-			unAuteur.setProperty("Nom", AuteurConcerne.getProperty("Nom"));
-			unAuteur.setProperty("Prenom", AuteurConcerne.getProperty("Prenom"));
-			unAuteur.setProperty("Domicile", AuteurConcerne.getProperty("Domicile"));
-			unAuteur.setProperty("Numero", AuteurConcerne.getProperty("Numero"));
-			unAuteur.setProperty("ID/Name", AuteurConcerne.getProperty("ID/Name"));
-			unAuteur.setProperty(champ, valeur);
-			ds.put(unAuteur);
-		}
-		catch(Exception e) {
-			System.out.println("Error : " + e.getMessage());
-		}
-	}
 	
 	@WebMethod
-	public String modifier2(String champ, String oldValeur, String newValeur)
+	public String modifierToutAuteur(String champ, String oldValeur, String newValeur)
 	{
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		
@@ -127,7 +105,7 @@ public class TestBaseDBManager {
 	}
 	
 	@WebMethod
-	public List<String> afficherBase() {
+	public List<String> afficherAuteur() {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		List<String> str = new ArrayList<String>();
 
@@ -161,7 +139,7 @@ public class TestBaseDBManager {
 	}
 	
 	@WebMethod
-	public String supprimer(String champ, String valeur)
+	public String supprimerToutAuteur(String champ, String valeur)
 	{
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		String str = "";
@@ -189,22 +167,25 @@ public class TestBaseDBManager {
 	}
 	
 	@WebMethod
-	public String create(String Numero, String Nom , String Prenom, String Domicile)
+	public String createAuteur(String Numero, String Nom , String Prenom, String Domicile)
 	{
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		String res = "ajout réussit";
 		Entity unAuteur = new Entity("T_Auteur");
+		
+		// estimation de la clef primaire
 		Query requete = new Query("T_Auteur").addFilter("Numero",FilterOperator.EQUAL, Numero);
 		PreparedQuery resultat = ds.prepare(requete);
 		if (resultat.countEntities() == 0)
 		{
+			// clef dispo --> creation de l'objet
 			unAuteur.setProperty("Numero", Numero);
 			unAuteur.setProperty("Nom", Nom);
 			unAuteur.setProperty("Prenom", Prenom);
 			unAuteur.setProperty("Domicile", Domicile);
 			ds.put(unAuteur);
 		}
-		else
+		else // clef prise --> rien
 			res = "Le numero est déjà pris";
 		
 		return res;

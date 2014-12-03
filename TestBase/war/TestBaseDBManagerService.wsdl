@@ -6,35 +6,29 @@
       <xsd:import namespace="http://fonctionWebService.testBase.com/" schemaLocation="TestBaseDBManagerService_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="create">
-    <part name="parameters" element="tns:create"/>
+  <message name="createStubAuteur">
+    <part name="parameters" element="tns:createStubAuteur"/>
   </message>
-  <message name="createResponse">
-    <part name="parameters" element="tns:createResponse"/>
+  <message name="createStubAuteurResponse">
+    <part name="parameters" element="tns:createStubAuteurResponse"/>
   </message>
-  <message name="createBDD">
-    <part name="parameters" element="tns:createBDD"/>
+  <message name="modifierToutAuteur">
+    <part name="parameters" element="tns:modifierToutAuteur"/>
   </message>
-  <message name="createBDDResponse">
-    <part name="parameters" element="tns:createBDDResponse"/>
+  <message name="modifierToutAuteurResponse">
+    <part name="parameters" element="tns:modifierToutAuteurResponse"/>
   </message>
-  <message name="modifier">
-    <part name="parameters" element="tns:modifier"/>
+  <message name="supprimerToutAuteur">
+    <part name="parameters" element="tns:supprimerToutAuteur"/>
   </message>
-  <message name="modifierResponse">
-    <part name="parameters" element="tns:modifierResponse"/>
+  <message name="supprimerToutAuteurResponse">
+    <part name="parameters" element="tns:supprimerToutAuteurResponse"/>
   </message>
-  <message name="modifier2">
-    <part name="parameters" element="tns:modifier2"/>
+  <message name="afficherAuteur">
+    <part name="parameters" element="tns:afficherAuteur"/>
   </message>
-  <message name="modifier2Response">
-    <part name="parameters" element="tns:modifier2Response"/>
-  </message>
-  <message name="afficherBase">
-    <part name="parameters" element="tns:afficherBase"/>
-  </message>
-  <message name="afficherBaseResponse">
-    <part name="parameters" element="tns:afficherBaseResponse"/>
+  <message name="afficherAuteurResponse">
+    <part name="parameters" element="tns:afficherAuteurResponse"/>
   </message>
   <message name="additionner">
     <part name="parameters" element="tns:additionner"/>
@@ -42,45 +36,41 @@
   <message name="additionnerResponse">
     <part name="parameters" element="tns:additionnerResponse"/>
   </message>
-  <message name="supprimer">
-    <part name="parameters" element="tns:supprimer"/>
+  <message name="createAuteur">
+    <part name="parameters" element="tns:createAuteur"/>
   </message>
-  <message name="supprimerResponse">
-    <part name="parameters" element="tns:supprimerResponse"/>
+  <message name="createAuteurResponse">
+    <part name="parameters" element="tns:createAuteurResponse"/>
   </message>
   <portType name="TestBaseDBManager">
-    <operation name="create">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createRequest" message="tns:create"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createResponse" message="tns:createResponse"/>
+    <operation name="createStubAuteur">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createStubAuteurRequest" message="tns:createStubAuteur"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createStubAuteurResponse" message="tns:createStubAuteurResponse"/>
     </operation>
-    <operation name="createBDD">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createBDDRequest" message="tns:createBDD"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createBDDResponse" message="tns:createBDDResponse"/>
+    <operation name="modifierToutAuteur">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifierToutAuteurRequest" message="tns:modifierToutAuteur"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifierToutAuteurResponse" message="tns:modifierToutAuteurResponse"/>
     </operation>
-    <operation name="modifier">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifierRequest" message="tns:modifier"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifierResponse" message="tns:modifierResponse"/>
+    <operation name="supprimerToutAuteur">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/supprimerToutAuteurRequest" message="tns:supprimerToutAuteur"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/supprimerToutAuteurResponse" message="tns:supprimerToutAuteurResponse"/>
     </operation>
-    <operation name="modifier2">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifier2Request" message="tns:modifier2"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifier2Response" message="tns:modifier2Response"/>
-    </operation>
-    <operation name="afficherBase">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/afficherBaseRequest" message="tns:afficherBase"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/afficherBaseResponse" message="tns:afficherBaseResponse"/>
+    <operation name="afficherAuteur">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/afficherAuteurRequest" message="tns:afficherAuteur"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/afficherAuteurResponse" message="tns:afficherAuteurResponse"/>
     </operation>
     <operation name="additionner">
       <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/additionnerRequest" message="tns:additionner"/>
       <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/additionnerResponse" message="tns:additionnerResponse"/>
     </operation>
-    <operation name="supprimer">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/supprimerRequest" message="tns:supprimer"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/supprimerResponse" message="tns:supprimerResponse"/>
+    <operation name="createAuteur">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createAuteurRequest" message="tns:createAuteur"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createAuteurResponse" message="tns:createAuteurResponse"/>
     </operation>
   </portType>
   <binding name="TestBaseDBManagerPortBinding" type="tns:TestBaseDBManager">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-    <operation name="create">
+    <operation name="createStubAuteur">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -89,7 +79,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="createBDD">
+    <operation name="modifierToutAuteur">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -98,7 +88,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="modifier">
+    <operation name="supprimerToutAuteur">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -107,16 +97,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="modifier2">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="afficherBase">
+    <operation name="afficherAuteur">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -134,7 +115,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="supprimer">
+    <operation name="createAuteur">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -146,7 +127,7 @@
   </binding>
   <service name="TestBaseDBManagerService">
     <port name="TestBaseDBManagerPort" binding="tns:TestBaseDBManagerPortBinding">
-      <soap:address location="REPLACE_WITH_ACTUAL_URL"/>
+      <soap:address location="http://localhost:8888/TestBaseDBManagerService"/>
     </port>
   </service>
 </definitions>

@@ -14,21 +14,17 @@ import javax.xml.soap.SOAPFault;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.transform.dom.DOMSource;
 
-import com.testBase.fonctionWebService.jaxws.Additionner;
-import com.testBase.fonctionWebService.jaxws.AfficherBase;
-import com.testBase.fonctionWebService.jaxws.Create;
-import com.testBase.fonctionWebService.jaxws.Modifier2;
-import com.testBase.fonctionWebService.jaxws.Supprimer;
+import com.testBase.fonctionWebService.jaxws.*;
 import com.testBase.soapAdapter.TestBaseSoapAdapter;
 
 public class TestBaseSoapHandler {
 
 		private static final String NAMESPACE_URI = "http://fonctionWebService.testBase.com/";
-		private static final QName AfficherBase_QNAME = new QName(NAMESPACE_URI,"afficherBase");
+		private static final QName AfficherAuteur_QNAME = new QName(NAMESPACE_URI,"afficherAuteur");
 		private static final QName Additionner_QNAME = new QName(NAMESPACE_URI,"additionner");
-		private static final QName Create_QNAME = new QName(NAMESPACE_URI,"create");
-		private static final QName Supprimer_QNAME = new QName(NAMESPACE_URI,"supprimer");
-		private static final QName Modifier2_QNAME = new QName(NAMESPACE_URI,"modifier2");
+		private static final QName CreateAuteur_QNAME = new QName(NAMESPACE_URI,"createAuteur");
+		private static final QName SupprimerToutAuteur_QNAME = new QName(NAMESPACE_URI,"supprimerToutAuteur");
+		private static final QName ModifierToutAuteur_QNAME = new QName(NAMESPACE_URI,"modifierToutAuteur");
 		
 		private MessageFactory messageFactory;
 		
@@ -56,9 +52,9 @@ public class TestBaseSoapHandler {
 					QName qname = soapElement.getElementQName();
 					
 					
-					if (AfficherBase_QNAME.equals(qname))
+					if (AfficherAuteur_QNAME.equals(qname))
 					{
-						response = appelerAfficherBase(soapElement);
+						response = appelerAfficherAuteur(soapElement);
 						break;
 					}
 					
@@ -68,18 +64,18 @@ public class TestBaseSoapHandler {
 						break;
 					}
 					
-					if (Create_QNAME.equals(qname))
+					if (CreateAuteur_QNAME.equals(qname))
 					{
-						response = appelerCreate(soapElement);
+						response = appelerCreateAuteur(soapElement);
 					}
-					if (Supprimer_QNAME.equals(qname))
+					if (SupprimerToutAuteur_QNAME.equals(qname))
 					{
-						response = appelerSupprimer(soapElement);
+						response = appelerSupprimerToutAuteur(soapElement);
 					}
 					
-					if (Modifier2_QNAME.equals(qname))
+					if (ModifierToutAuteur_QNAME.equals(qname))
 					{
-						response = appelerModifier2(soapElement);
+						response = appelerModifierToutAuteur(soapElement);
 					}
 					
 				}
@@ -103,9 +99,9 @@ public class TestBaseSoapHandler {
 		}
 
 
-		private Object appelerAfficherBase(SOAPElement soapElement) {
-			AfficherBase afficherBase = JAXB.unmarshal(new DOMSource(soapElement), AfficherBase.class);
-			return adapter.adapterAfficherBase(afficherBase);
+		private Object appelerAfficherAuteur(SOAPElement soapElement) {
+			AfficherAuteur afficherAuteur = JAXB.unmarshal(new DOMSource(soapElement), AfficherAuteur.class);
+			return adapter.adapterAfficherBase(afficherAuteur);
 			
 		}
 		
@@ -115,20 +111,20 @@ public class TestBaseSoapHandler {
 			
 		}
 		
-		private Object appelerCreate(SOAPElement soapElement) {
-			Create create = JAXB.unmarshal(new DOMSource(soapElement), Create.class);
+		private Object appelerCreateAuteur(SOAPElement soapElement) {
+			CreateAuteur create = JAXB.unmarshal(new DOMSource(soapElement), CreateAuteur.class);
 			return adapter.adapterCreate(create);
 			
 		}
 		
-		private Object appelerSupprimer(SOAPElement soapElement) {
-			Supprimer supprimer = JAXB.unmarshal(new DOMSource(soapElement), Supprimer.class);
+		private Object appelerSupprimerToutAuteur(SOAPElement soapElement) {
+			SupprimerToutAuteur supprimer = JAXB.unmarshal(new DOMSource(soapElement), SupprimerToutAuteur.class);
 			return adapter.adapterSupprimer(supprimer);
 		}
 		
-		private Object appelerModifier2(SOAPElement soapElement) {
-			Modifier2 modifier2 = JAXB.unmarshal(new DOMSource(soapElement), Modifier2.class);
-			return adapter.adapterModifier2(modifier2);
+		private Object appelerModifierToutAuteur(SOAPElement soapElement) {
+			ModifierToutAuteur modifier = JAXB.unmarshal(new DOMSource(soapElement), ModifierToutAuteur.class);
+			return adapter.adapterModifier2(modifier);
 		}
 		
 }

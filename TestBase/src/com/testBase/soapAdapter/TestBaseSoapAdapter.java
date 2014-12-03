@@ -9,13 +9,13 @@ import com.testBase.fonctionWebService.jaxws.*;
 public class TestBaseSoapAdapter {
 
 	TestBaseDBManager tbdbm = new TestBaseDBManager();
-	public AfficherBaseResponse adapterAfficherBase( AfficherBase request)
+	public AfficherAuteurResponse adapterAfficherBase( AfficherAuteur request)
 	{
 		
 		
 		
-		AfficherBaseResponse resp = new AfficherBaseResponse();
-		resp.setReturn(tbdbm.afficherBase());
+		AfficherAuteurResponse resp = new AfficherAuteurResponse();
+		resp.setReturn(tbdbm.afficherAuteur());
 
 		return resp;
 		
@@ -35,7 +35,7 @@ public class TestBaseSoapAdapter {
 		
 	}
 	
-	public CreateResponse adapterCreate( Create request)
+	public CreateAuteurResponse adapterCreate( CreateAuteur request)
 	{
 		
 		String numero = request.getArg0();
@@ -43,37 +43,37 @@ public class TestBaseSoapAdapter {
 		String prenom = request.getArg2();
 		String domicile = request.getArg3();
 		
-		CreateResponse resp = new CreateResponse();
+		CreateAuteurResponse resp = new CreateAuteurResponse();
 		
 
-		resp.setReturn(tbdbm.create(numero, nom , prenom, domicile));
+		resp.setReturn(tbdbm.createAuteur(numero, nom , prenom, domicile));
 		return resp;
 		
 	}
 	
-	public SupprimerResponse adapterSupprimer( Supprimer request)
+	public SupprimerToutAuteurResponse adapterSupprimer( SupprimerToutAuteur request)
 	{
 		
 		String champ=request.getArg0();
 		String valeur=request.getArg1();
 		
-		SupprimerResponse resp = new SupprimerResponse();
-		resp.setReturn(tbdbm.supprimer(champ, valeur));
+		SupprimerToutAuteurResponse resp = new SupprimerToutAuteurResponse();
+		resp.setReturn(tbdbm.supprimerToutAuteur(champ, valeur));
 
 		
 		return resp;
 		
 	}
 	
-	public Modifier2Response adapterModifier2( Modifier2 request)
+	public ModifierToutAuteurResponse adapterModifier2( ModifierToutAuteur request)
 	{
 		
 		String champ=request.getArg0();
 		String oldValeur=request.getArg1();
 		String newValeur=request.getArg2();
 		
-		Modifier2Response resp = new Modifier2Response();
-		resp.setReturn(tbdbm.modifier2(champ, oldValeur, newValeur));
+		ModifierToutAuteurResponse resp = new ModifierToutAuteurResponse();
+		resp.setReturn(tbdbm.modifierToutAuteur(champ, oldValeur, newValeur));
 
 		
 		return resp;
