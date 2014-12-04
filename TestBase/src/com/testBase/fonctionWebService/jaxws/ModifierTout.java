@@ -7,14 +7,15 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "modifierToutAuteur", namespace = "http://fonctionWebService.testBase.com/")
+@XmlRootElement(name = "modifierTout", namespace = "http://fonctionWebService.testBase.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "modifierToutAuteur", namespace = "http://fonctionWebService.testBase.com/", propOrder = {
+@XmlType(name = "modifierTout", namespace = "http://fonctionWebService.testBase.com/", propOrder = {
     "arg0",
     "arg1",
-    "arg2"
+    "arg2",
+    "arg3"
 })
-public class ModifierToutAuteur {
+public class ModifierTout {
 
     @XmlElement(name = "arg0", namespace = "")
     private String arg0;
@@ -22,6 +23,8 @@ public class ModifierToutAuteur {
     private String arg1;
     @XmlElement(name = "arg2", namespace = "")
     private String arg2;
+    @XmlElement(name = "arg3", namespace = "")
+    private String arg3;
 
     /**
      * 
@@ -75,6 +78,24 @@ public class ModifierToutAuteur {
      */
     public void setArg2(String arg2) {
         this.arg2 = arg2;
+    }
+
+    /**
+     * 
+     * @return
+     *     returns String
+     */
+    public String getArg3() {
+        return this.arg3;
+    }
+
+    /**
+     * 
+     * @param arg3
+     *     the value for the arg3 property
+     */
+    public void setArg3(String arg3) {
+        this.arg3 = arg3;
     }
 
 }

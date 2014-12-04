@@ -7,18 +7,24 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "supprimerToutAuteur", namespace = "http://fonctionWebService.testBase.com/")
+@XmlRootElement(name = "createLivre", namespace = "http://fonctionWebService.testBase.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "supprimerToutAuteur", namespace = "http://fonctionWebService.testBase.com/", propOrder = {
+@XmlType(name = "createLivre", namespace = "http://fonctionWebService.testBase.com/", propOrder = {
     "arg0",
-    "arg1"
+    "arg1",
+    "arg2",
+    "arg3"
 })
-public class SupprimerToutAuteur {
+public class CreateLivre {
 
     @XmlElement(name = "arg0", namespace = "")
     private String arg0;
     @XmlElement(name = "arg1", namespace = "")
     private String arg1;
+    @XmlElement(name = "arg2", namespace = "")
+    private String arg2;
+    @XmlElement(name = "arg3", namespace = "")
+    private String arg3;
 
     /**
      * 
@@ -54,6 +60,42 @@ public class SupprimerToutAuteur {
      */
     public void setArg1(String arg1) {
         this.arg1 = arg1;
+    }
+
+    /**
+     * 
+     * @return
+     *     returns String
+     */
+    public String getArg2() {
+        return this.arg2;
+    }
+
+    /**
+     * 
+     * @param arg2
+     *     the value for the arg2 property
+     */
+    public void setArg2(String arg2) {
+        this.arg2 = arg2;
+    }
+
+    /**
+     * 
+     * @return
+     *     returns String
+     */
+    public String getArg3() {
+        return this.arg3;
+    }
+
+    /**
+     * 
+     * @param arg3
+     *     the value for the arg3 property
+     */
+    public void setArg3(String arg3) {
+        this.arg3 = arg3;
     }
 
 }

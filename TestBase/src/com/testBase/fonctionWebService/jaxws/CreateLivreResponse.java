@@ -7,10 +7,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "supprimerToutAuteurResponse", namespace = "http://fonctionWebService.testBase.com/")
+@XmlRootElement(name = "createLivreResponse", namespace = "http://fonctionWebService.testBase.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "supprimerToutAuteurResponse", namespace = "http://fonctionWebService.testBase.com/")
-public class SupprimerToutAuteurResponse {
+@XmlType(name = "createLivreResponse", namespace = "http://fonctionWebService.testBase.com/")
+public class CreateLivreResponse {
 
     @XmlElement(name = "return", namespace = "")
     private String _return;

@@ -1,26 +1,27 @@
 
 package com.testBase.fonctionWebService.jaxws;
 
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "modifierToutAuteurResponse", namespace = "http://fonctionWebService.testBase.com/")
+@XmlRootElement(name = "afficherResponse", namespace = "http://fonctionWebService.testBase.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "modifierToutAuteurResponse", namespace = "http://fonctionWebService.testBase.com/")
-public class ModifierToutAuteurResponse {
+@XmlType(name = "afficherResponse", namespace = "http://fonctionWebService.testBase.com/")
+public class AfficherResponse {
 
     @XmlElement(name = "return", namespace = "")
-    private String _return;
+    private List<String> _return;
 
     /**
      * 
      * @return
-     *     returns String
+     *     returns List<String>
      */
-    public String getReturn() {
+    public List<String> getReturn() {
         return this._return;
     }
 
@@ -29,7 +30,7 @@ public class ModifierToutAuteurResponse {
      * @param _return
      *     the value for the _return property
      */
-    public void setReturn(String _return) {
+    public void setReturn(List<String> _return) {
         this._return = _return;
     }
 

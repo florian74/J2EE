@@ -20,11 +20,13 @@ import com.testBase.soapAdapter.TestBaseSoapAdapter;
 public class TestBaseSoapHandler {
 
 		private static final String NAMESPACE_URI = "http://fonctionWebService.testBase.com/";
-		private static final QName AfficherAuteur_QNAME = new QName(NAMESPACE_URI,"afficherAuteur");
 		private static final QName Additionner_QNAME = new QName(NAMESPACE_URI,"additionner");
 		private static final QName CreateAuteur_QNAME = new QName(NAMESPACE_URI,"createAuteur");
-		private static final QName SupprimerToutAuteur_QNAME = new QName(NAMESPACE_URI,"supprimerToutAuteur");
-		private static final QName ModifierToutAuteur_QNAME = new QName(NAMESPACE_URI,"modifierToutAuteur");
+		private static final QName CreateStubAuteur_QNAME = new QName(NAMESPACE_URI,"createStubAuteur");
+		private static final QName CreateLivre_QNAME = new QName(NAMESPACE_URI,"createLivre");
+		private static final QName Afficher_QNAME = new QName(NAMESPACE_URI,"afficher");
+		private static final QName SupprimerTout_QNAME = new QName(NAMESPACE_URI,"supprimerTout");
+		private static final QName ModifierTout_QNAME = new QName(NAMESPACE_URI,"modifierTout");
 		
 		private MessageFactory messageFactory;
 		
@@ -52,12 +54,6 @@ public class TestBaseSoapHandler {
 					QName qname = soapElement.getElementQName();
 					
 					
-					if (AfficherAuteur_QNAME.equals(qname))
-					{
-						response = appelerAfficherAuteur(soapElement);
-						break;
-					}
-					
 					if (Additionner_QNAME.equals(qname))
 					{
 						response = appelerAdditionner(soapElement);
@@ -68,16 +64,32 @@ public class TestBaseSoapHandler {
 					{
 						response = appelerCreateAuteur(soapElement);
 					}
-					if (SupprimerToutAuteur_QNAME.equals(qname))
+					
+					if (CreateStubAuteur_QNAME.equals(qname))
 					{
-						response = appelerSupprimerToutAuteur(soapElement);
+						response = appelerStubAuteur(soapElement);
 					}
 					
-					if (ModifierToutAuteur_QNAME.equals(qname))
+					if (CreateLivre_QNAME.equals(qname))
 					{
-						response = appelerModifierToutAuteur(soapElement);
+						response = appelerCreateLivre(soapElement);
 					}
 					
+					if (SupprimerTout_QNAME.equals(qname))
+					{
+						response = appelerSupprimerTout(soapElement);
+					}
+					
+					if (Afficher_QNAME.equals(qname))
+					{
+						response = appelerAfficher(soapElement);
+						break;
+					}
+					
+					if (ModifierTout_QNAME.equals(qname))
+					{
+						response = appelerModifierTout(soapElement);
+					}
 				}
 				
 			}
@@ -99,11 +111,7 @@ public class TestBaseSoapHandler {
 		}
 
 
-		private Object appelerAfficherAuteur(SOAPElement soapElement) {
-			AfficherAuteur afficherAuteur = JAXB.unmarshal(new DOMSource(soapElement), AfficherAuteur.class);
-			return adapter.adapterAfficherBase(afficherAuteur);
-			
-		}
+
 		
 		private Object appelerAdditionner(SOAPElement soapElement) {
 			Additionner additionner = JAXB.unmarshal(new DOMSource(soapElement), Additionner.class);
@@ -113,18 +121,37 @@ public class TestBaseSoapHandler {
 		
 		private Object appelerCreateAuteur(SOAPElement soapElement) {
 			CreateAuteur create = JAXB.unmarshal(new DOMSource(soapElement), CreateAuteur.class);
-			return adapter.adapterCreate(create);
+			return adapter.adapterCreateAuteur(create);
 			
 		}
 		
-		private Object appelerSupprimerToutAuteur(SOAPElement soapElement) {
-			SupprimerToutAuteur supprimer = JAXB.unmarshal(new DOMSource(soapElement), SupprimerToutAuteur.class);
-			return adapter.adapterSupprimer(supprimer);
+		
+		private Object appelerSupprimerTout(SOAPElement soapElement) {
+			SupprimerTout supprimer = JAXB.unmarshal(new DOMSource(soapElement), SupprimerTout.class);
+			return adapter.adapterSupprimerTout(supprimer);
 		}
 		
-		private Object appelerModifierToutAuteur(SOAPElement soapElement) {
-			ModifierToutAuteur modifier = JAXB.unmarshal(new DOMSource(soapElement), ModifierToutAuteur.class);
-			return adapter.adapterModifier2(modifier);
+		
+		private Object appelerModifierTout(SOAPElement soapElement) {
+			ModifierTout modifier = JAXB.unmarshal(new DOMSource(soapElement), ModifierTout.class);
+			return adapter.adapterModifierTout(modifier);
+		}
+		
+		private Object appelerStubAuteur(SOAPElement soapElement) {
+			CreateStubAuteur createStubAuteur = JAXB.unmarshal(new DOMSource(soapElement), CreateStubAuteur.class);
+			return adapter.adapterCreateStubAuteur(createStubAuteur);
+		}
+		
+		private Object appelerCreateLivre(SOAPElement soapElement) {
+			CreateLivre create = JAXB.unmarshal(new DOMSource(soapElement), CreateLivre.class);
+			return adapter.adapterCreateLivre(create);
+			
+		}
+		
+		private Object appelerAfficher(SOAPElement soapElement) {
+			Afficher afficherAuteur = JAXB.unmarshal(new DOMSource(soapElement), Afficher.class);
+			return adapter.adapterAfficher(afficherAuteur);
+			
 		}
 		
 }

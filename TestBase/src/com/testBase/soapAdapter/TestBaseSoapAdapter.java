@@ -9,13 +9,15 @@ import com.testBase.fonctionWebService.jaxws.*;
 public class TestBaseSoapAdapter {
 
 	TestBaseDBManager tbdbm = new TestBaseDBManager();
-	public AfficherAuteurResponse adapterAfficherBase( AfficherAuteur request)
+
+	
+	public AfficherResponse adapterAfficher( Afficher request)
 	{
 		
 		
-		
-		AfficherAuteurResponse resp = new AfficherAuteurResponse();
-		resp.setReturn(tbdbm.afficherAuteur());
+		String entite = request.getArg0();
+		AfficherResponse resp = new AfficherResponse();
+		resp.setReturn(tbdbm.afficher(entite));
 
 		return resp;
 		
@@ -35,7 +37,7 @@ public class TestBaseSoapAdapter {
 		
 	}
 	
-	public CreateAuteurResponse adapterCreate( CreateAuteur request)
+	public CreateAuteurResponse adapterCreateAuteur( CreateAuteur request)
 	{
 		
 		String numero = request.getArg0();
@@ -51,29 +53,60 @@ public class TestBaseSoapAdapter {
 		
 	}
 	
-	public SupprimerToutAuteurResponse adapterSupprimer( SupprimerToutAuteur request)
+	public CreateLivreResponse adapterCreateLivre( CreateLivre request)
 	{
 		
-		String champ=request.getArg0();
-		String valeur=request.getArg1();
+		String numero = request.getArg0();
+		String titre = request.getArg1();
+		String prix = request.getArg2();
+		String resume = request.getArg3();
 		
-		SupprimerToutAuteurResponse resp = new SupprimerToutAuteurResponse();
-		resp.setReturn(tbdbm.supprimerToutAuteur(champ, valeur));
+		CreateLivreResponse resp = new CreateLivreResponse();
+		
+
+		resp.setReturn(tbdbm.createLivre(numero, titre , prix, resume));
+		return resp;
+		
+	}
+	
+
+	
+	public SupprimerToutResponse adapterSupprimerTout( SupprimerTout request)
+	{
+		String entite = request.getArg0();
+		String champ=request.getArg1();
+		String valeur=request.getArg2();
+		
+		SupprimerToutResponse resp = new SupprimerToutResponse();
+		resp.setReturn(tbdbm.supprimerTout(entite,champ, valeur));
 
 		
 		return resp;
 		
 	}
 	
-	public ModifierToutAuteurResponse adapterModifier2( ModifierToutAuteur request)
+	
+	public ModifierToutResponse adapterModifierTout( ModifierTout request)
+	{
+		String entite=request.getArg0();
+		String champ=request.getArg1();
+		String oldValeur=request.getArg2();
+		String newValeur=request.getArg3();
+		
+		ModifierToutResponse resp = new ModifierToutResponse();
+		resp.setReturn(tbdbm.modifierTout(entite, champ, oldValeur, newValeur));
+
+		
+		return resp;
+		
+	}
+	
+	public CreateStubAuteurResponse adapterCreateStubAuteur( CreateStubAuteur request)
 	{
 		
-		String champ=request.getArg0();
-		String oldValeur=request.getArg1();
-		String newValeur=request.getArg2();
 		
-		ModifierToutAuteurResponse resp = new ModifierToutAuteurResponse();
-		resp.setReturn(tbdbm.modifierToutAuteur(champ, oldValeur, newValeur));
+		CreateStubAuteurResponse resp = new CreateStubAuteurResponse();
+		tbdbm.createStubAuteur();
 
 		
 		return resp;

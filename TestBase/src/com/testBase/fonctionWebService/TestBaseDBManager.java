@@ -4,6 +4,7 @@ import java.awt.image.FilteredImageSource;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.jws.WebMethod;
 import javax.jws.WebService;
@@ -62,36 +63,43 @@ public class TestBaseDBManager {
 	}
 	
 	
-	@WebMethod
-	public String modifierToutAuteur(String champ, String oldValeur, String newValeur)
+	public String modifierTout(String entite, String champ, String oldValeur, String newValeur)
 	{
+		System.out.println("coucou");
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		
-		Query requete = new Query("T_Auteur").addFilter(champ, FilterOperator.EQUAL, oldValeur);
+		Query requete = new Query(entite).addFilter(champ, FilterOperator.EQUAL, oldValeur);
 		
 		PreparedQuery resultat = ds.prepare(requete);
 		String result = "la modification a échoué";
 		for(Entity un_auteur: resultat.asIterable()) {
 			
 			
-			//modifier((long) un_auteur.getProperty("Numero"), champ , newValeur);
+			
+			
 			Key cle = un_auteur.getKey();
 			
 			// récupération des données de l'ancienne entité
-			String nom = un_auteur.getProperty("Nom").toString();
-			String prenom = un_auteur.getProperty("Prenom").toString();
-			String domicile = un_auteur.getProperty("Domicile").toString();
-			String numero = un_auteur.getProperty("Numero").toString();
+			List<String> properties = new ArrayList<String>();
+			Set<String> propertiesName = un_auteur.getProperties().keySet();
+			for (String property : propertiesName)
+			{
+				properties.add(un_auteur.getProperty(property).toString());
+			}
 			
 			// suppression de l'entité
 			ds.delete(cle);
 			
 			// création d'une nouvelle entité
-			Entity auteur = new Entity("T_Auteur");
-			auteur.setProperty("Numero", numero);
-			auteur.setProperty("Nom", nom );
-			auteur.setProperty("Prenom", prenom);
-			auteur.setProperty("Domicile", domicile);
+			Entity auteur = new Entity(entite);
+			
+			// récupération des champs
+			int i=0;
+			for (String property : propertiesName)
+			{
+				auteur.setProperty(property, properties.get(i));
+				i++;
+			}
 			
 			// modification du champ
 			auteur.setProperty(champ, newValeur);
@@ -104,19 +112,20 @@ public class TestBaseDBManager {
 		return result;
 	}
 	
+	
 	@WebMethod
-	public List<String> afficherAuteur() {
+	public List<String> afficher(String entite) {
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		List<String> str = new ArrayList<String>();
 
-		Query requete = new Query("T_Auteur");
+		Query requete = new Query(entite);
 		
 		
 		PreparedQuery resultat = ds.prepare(requete);
 		
 		for(Entity un_auteur: resultat.asIterable()) {
 			
-			//affichage champ par champ
+			//affichage champ par champ si c'est une entité Auteur
 			//String nom = un_auteur.getProperty("Nom").toString();
 			//String prenom = un_auteur.getProperty("Prenom").toString();
 			//String domicile = un_auteur.getProperty("Domicile").toString();
@@ -131,6 +140,8 @@ public class TestBaseDBManager {
 		return str;
 	}
 	
+
+	
 	@WebMethod
 	public int additionner(int a, int b)
 	{
@@ -138,12 +149,13 @@ public class TestBaseDBManager {
 		return a+b;
 	}
 	
+	
 	@WebMethod
-	public String supprimerToutAuteur(String champ, String valeur)
+	public String supprimerTout(String entite, String champ, String valeur)
 	{
 		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 		String str = "";
-		Query requete = new Query("T_Auteur").addFilter(champ,FilterOperator.EQUAL, valeur);
+		Query requete = new Query(entite).addFilter(champ,FilterOperator.EQUAL, valeur);
 		
 		PreparedQuery resultat = ds.prepare(requete);
 		
@@ -165,6 +177,8 @@ public class TestBaseDBManager {
 		
 		return str;
 	}
+	
+
 	
 	@WebMethod
 	public String createAuteur(String Numero, String Nom , String Prenom, String Domicile)
@@ -191,4 +205,28 @@ public class TestBaseDBManager {
 		return res;
 	}
 	
+	@WebMethod
+	public String createLivre(String Numero, String Titre , String Prix, String Resume)
+	{
+		DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
+		String res = "ajout réussit";
+		Entity unAuteur = new Entity("T_Livre");
+		
+		// estimation de la clef primaire
+		Query requete = new Query("T_Livre").addFilter("Numero",FilterOperator.EQUAL, Numero);
+		PreparedQuery resultat = ds.prepare(requete);
+		if (resultat.countEntities() == 0)
+		{
+			// clef dispo --> creation de l'objet
+			unAuteur.setProperty("Numero", Numero);
+			unAuteur.setProperty("Titre", Titre);
+			unAuteur.setProperty("Prix", Prix);
+			unAuteur.setProperty("Resume", Resume);
+			ds.put(unAuteur);
+		}
+		else // clef prise --> rien
+			res = "Le numero est déjà pris";
+		
+		return res;
+	}
 }

@@ -12,23 +12,17 @@
   <message name="createStubAuteurResponse">
     <part name="parameters" element="tns:createStubAuteurResponse"/>
   </message>
-  <message name="modifierToutAuteur">
-    <part name="parameters" element="tns:modifierToutAuteur"/>
+  <message name="modifierTout">
+    <part name="parameters" element="tns:modifierTout"/>
   </message>
-  <message name="modifierToutAuteurResponse">
-    <part name="parameters" element="tns:modifierToutAuteurResponse"/>
+  <message name="modifierToutResponse">
+    <part name="parameters" element="tns:modifierToutResponse"/>
   </message>
-  <message name="supprimerToutAuteur">
-    <part name="parameters" element="tns:supprimerToutAuteur"/>
+  <message name="afficher">
+    <part name="parameters" element="tns:afficher"/>
   </message>
-  <message name="supprimerToutAuteurResponse">
-    <part name="parameters" element="tns:supprimerToutAuteurResponse"/>
-  </message>
-  <message name="afficherAuteur">
-    <part name="parameters" element="tns:afficherAuteur"/>
-  </message>
-  <message name="afficherAuteurResponse">
-    <part name="parameters" element="tns:afficherAuteurResponse"/>
+  <message name="afficherResponse">
+    <part name="parameters" element="tns:afficherResponse"/>
   </message>
   <message name="additionner">
     <part name="parameters" element="tns:additionner"/>
@@ -36,36 +30,52 @@
   <message name="additionnerResponse">
     <part name="parameters" element="tns:additionnerResponse"/>
   </message>
+  <message name="supprimerTout">
+    <part name="parameters" element="tns:supprimerTout"/>
+  </message>
+  <message name="supprimerToutResponse">
+    <part name="parameters" element="tns:supprimerToutResponse"/>
+  </message>
   <message name="createAuteur">
     <part name="parameters" element="tns:createAuteur"/>
   </message>
   <message name="createAuteurResponse">
     <part name="parameters" element="tns:createAuteurResponse"/>
   </message>
+  <message name="createLivre">
+    <part name="parameters" element="tns:createLivre"/>
+  </message>
+  <message name="createLivreResponse">
+    <part name="parameters" element="tns:createLivreResponse"/>
+  </message>
   <portType name="TestBaseDBManager">
     <operation name="createStubAuteur">
       <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createStubAuteurRequest" message="tns:createStubAuteur"/>
       <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createStubAuteurResponse" message="tns:createStubAuteurResponse"/>
     </operation>
-    <operation name="modifierToutAuteur">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifierToutAuteurRequest" message="tns:modifierToutAuteur"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifierToutAuteurResponse" message="tns:modifierToutAuteurResponse"/>
+    <operation name="modifierTout">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifierToutRequest" message="tns:modifierTout"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/modifierToutResponse" message="tns:modifierToutResponse"/>
     </operation>
-    <operation name="supprimerToutAuteur">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/supprimerToutAuteurRequest" message="tns:supprimerToutAuteur"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/supprimerToutAuteurResponse" message="tns:supprimerToutAuteurResponse"/>
-    </operation>
-    <operation name="afficherAuteur">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/afficherAuteurRequest" message="tns:afficherAuteur"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/afficherAuteurResponse" message="tns:afficherAuteurResponse"/>
+    <operation name="afficher">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/afficherRequest" message="tns:afficher"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/afficherResponse" message="tns:afficherResponse"/>
     </operation>
     <operation name="additionner">
       <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/additionnerRequest" message="tns:additionner"/>
       <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/additionnerResponse" message="tns:additionnerResponse"/>
     </operation>
+    <operation name="supprimerTout">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/supprimerToutRequest" message="tns:supprimerTout"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/supprimerToutResponse" message="tns:supprimerToutResponse"/>
+    </operation>
     <operation name="createAuteur">
       <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createAuteurRequest" message="tns:createAuteur"/>
       <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createAuteurResponse" message="tns:createAuteurResponse"/>
+    </operation>
+    <operation name="createLivre">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createLivreRequest" message="tns:createLivre"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBManager/createLivreResponse" message="tns:createLivreResponse"/>
     </operation>
   </portType>
   <binding name="TestBaseDBManagerPortBinding" type="tns:TestBaseDBManager">
@@ -79,7 +89,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="modifierToutAuteur">
+    <operation name="modifierTout">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -88,16 +98,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="supprimerToutAuteur">
-      <soap:operation soapAction=""/>
-      <input>
-        <soap:body use="literal"/>
-      </input>
-      <output>
-        <soap:body use="literal"/>
-      </output>
-    </operation>
-    <operation name="afficherAuteur">
+    <operation name="afficher">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -115,7 +116,25 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+    <operation name="supprimerTout">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
     <operation name="createAuteur">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="createLivre">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
