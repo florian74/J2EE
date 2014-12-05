@@ -14,14 +14,14 @@ import javax.xml.bind.annotation.XmlType;
 public class AfficherResponse {
 
     @XmlElement(name = "return", namespace = "")
-    private List<String> _return;
+    private String[] _return;
 
     /**
      * 
      * @return
      *     returns List<String>
      */
-    public List<String> getReturn() {
+    public String[] getReturn() {
         return this._return;
     }
 
@@ -30,7 +30,7 @@ public class AfficherResponse {
      * @param _return
      *     the value for the _return property
      */
-    public void setReturn(List<String> _return) {
+    public void setReturn(String[] _return) {
         this._return = _return;
     }
 

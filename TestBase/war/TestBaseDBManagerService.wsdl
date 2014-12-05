@@ -146,7 +146,7 @@
   </binding>
   <service name="TestBaseDBManagerService">
     <port name="TestBaseDBManagerPort" binding="tns:TestBaseDBManagerPortBinding">
-      <soap:address location="http://localhost:8888/TestBaseDBManagerService"/>
+      <soap:address location="http://testeclipse17.appspot.com/TestBaseDBManagerService"/>
     </port>
   </service>
 </definitions>

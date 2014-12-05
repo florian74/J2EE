@@ -3,12 +3,11 @@ package com.testBase.soapAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.testBase.fonctionWebService.TestBaseDBManager;
 import com.testBase.fonctionWebService.jaxws.*;
 
 public class TestBaseSoapAdapter {
 
-	TestBaseDBManager tbdbm = new TestBaseDBManager();
+	TestBaseDBService tbdbm = new TestBaseDBService();
 
 	
 	public AfficherResponse adapterAfficher( Afficher request)
@@ -16,8 +15,9 @@ public class TestBaseSoapAdapter {
 		
 		
 		String entite = request.getArg0();
+		String prop = request.getArg1();
 		AfficherResponse resp = new AfficherResponse();
-		resp.setReturn(tbdbm.afficher(entite));
+		resp.setReturn(tbdbm.afficher(entite, prop));
 
 		return resp;
 		
