@@ -122,12 +122,11 @@ public class TestBaseSoapAdapter {
 	{
 		String entite=request.getArg0();
 		String champ=request.getArg1();
-		String oldValeur=request.getArg2();
-		String newValeur=request.getArg3();
-		String Numero=request.getArg4();
+		String newValeur=request.getArg2();
+		String Numero=request.getArg3();
 		
 		ModifierUnResponse resp = new ModifierUnResponse();
-		resp.setReturn(tbdbm.modifierUn(entite, champ, oldValeur, newValeur,Numero));
+		resp.setReturn(tbdbm.modifierUn(entite, champ, newValeur,Numero));
 
 		
 		return resp;

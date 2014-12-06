@@ -64,12 +64,11 @@ public class TestBaseDBService {
 		
 		
 		@WebMethod
-		public String modifierUn(String entite,String champ, String oldValeur, String newValeur, String Numero)
+		public String modifierUn(String entite,String champ, String newValeur, String Numero)
 		{
 			DatastoreService ds = DatastoreServiceFactory.getDatastoreService();
 			String str = "la modification à echoué";
-			Query requete = new Query(entite).addFilter(champ, FilterOperator.EQUAL, oldValeur);
-			requete = requete.addFilter("Numero",FilterOperator.EQUAL , Numero);
+			Query requete = new Query(entite).addFilter("Numero",FilterOperator.EQUAL , Numero);
 			PreparedQuery resultat = ds.prepare(requete);
 			
 			for(Entity un_auteur: resultat.asIterable()) {
