@@ -142,7 +142,6 @@
       <xs:element name="arg1" type="xs:string" minOccurs="0"/>
       <xs:element name="arg2" type="xs:string" minOccurs="0"/>
       <xs:element name="arg3" type="xs:string" minOccurs="0"/>
-      <xs:element name="arg4" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
