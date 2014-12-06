@@ -13,6 +13,10 @@
 
   <xs:element name="createAuteurResponse" type="tns:createAuteurResponse"/>
 
+  <xs:element name="createLienAuteurLivre" type="tns:createLienAuteurLivre"/>
+
+  <xs:element name="createLienAuteurLivreResponse" type="tns:createLienAuteurLivreResponse"/>
+
   <xs:element name="createLivre" type="tns:createLivre"/>
 
   <xs:element name="createLivreResponse" type="tns:createLivreResponse"/>
@@ -21,42 +25,23 @@
 
   <xs:element name="createStubAuteurResponse" type="tns:createStubAuteurResponse"/>
 
+  <xs:element name="modifierEcrire" type="tns:modifierEcrire"/>
+
+  <xs:element name="modifierEcrireResponse" type="tns:modifierEcrireResponse"/>
+
   <xs:element name="modifierTout" type="tns:modifierTout"/>
 
   <xs:element name="modifierToutResponse" type="tns:modifierToutResponse"/>
+
+  <xs:element name="modifierUn" type="tns:modifierUn"/>
+
+  <xs:element name="modifierUnResponse" type="tns:modifierUnResponse"/>
 
   <xs:element name="supprimerTout" type="tns:supprimerTout"/>
 
   <xs:element name="supprimerToutResponse" type="tns:supprimerToutResponse"/>
 
-  <xs:complexType name="afficher">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
-      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="afficherResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="supprimerTout">
-    <xs:sequence>
-      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
-      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
-      <xs:element name="arg2" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="supprimerToutResponse">
-    <xs:sequence>
-      <xs:element name="return" type="xs:string" minOccurs="0"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="modifierTout">
+  <xs:complexType name="modifierEcrire">
     <xs:sequence>
       <xs:element name="arg0" type="xs:string" minOccurs="0"/>
       <xs:element name="arg1" type="xs:string" minOccurs="0"/>
@@ -65,13 +50,13 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="modifierToutResponse">
+  <xs:complexType name="modifierEcrireResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:string" minOccurs="0"/>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="createAuteur">
+  <xs:complexType name="createLivre">
     <xs:sequence>
       <xs:element name="arg0" type="xs:string" minOccurs="0"/>
       <xs:element name="arg1" type="xs:string" minOccurs="0"/>
@@ -80,7 +65,21 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="createAuteurResponse">
+  <xs:complexType name="createLivreResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createLienAuteurLivre">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="createLienAuteurLivreResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:string" minOccurs="0"/>
     </xs:sequence>
@@ -107,7 +106,7 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="createLivre">
+  <xs:complexType name="createAuteur">
     <xs:sequence>
       <xs:element name="arg0" type="xs:string" minOccurs="0"/>
       <xs:element name="arg1" type="xs:string" minOccurs="0"/>
@@ -116,9 +115,67 @@
     </xs:sequence>
   </xs:complexType>
 
-  <xs:complexType name="createLivreResponse">
+  <xs:complexType name="createAuteurResponse">
     <xs:sequence>
       <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modifierTout">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg3" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modifierToutResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modifierUn">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg3" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg4" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="modifierUnResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="supprimerTout">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg2" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="supprimerToutResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="afficher">
+    <xs:sequence>
+      <xs:element name="arg0" type="xs:string" minOccurs="0"/>
+      <xs:element name="arg1" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="afficherResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 </xs:schema>

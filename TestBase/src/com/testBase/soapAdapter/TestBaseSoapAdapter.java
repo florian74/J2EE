@@ -3,6 +3,7 @@ package com.testBase.soapAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.testBase.fonctionWebService.TestBaseDBService;
 import com.testBase.fonctionWebService.jaxws.*;
 
 public class TestBaseSoapAdapter {
@@ -69,6 +70,22 @@ public class TestBaseSoapAdapter {
 		
 	}
 	
+	public CreateLienAuteurLivreResponse adapterCreateLienAuteurLivre( CreateLienAuteurLivre request)
+	{
+		
+		String numero = request.getArg0();
+		String livre = request.getArg1();
+		String auteur = request.getArg2();
+
+		
+		CreateLienAuteurLivreResponse resp = new CreateLienAuteurLivreResponse();
+		
+
+		resp.setReturn(tbdbm.createLienAuteurLivre(numero, livre , auteur));
+		return resp;
+		
+	}
+	
 
 	
 	public SupprimerToutResponse adapterSupprimerTout( SupprimerTout request)
@@ -101,6 +118,37 @@ public class TestBaseSoapAdapter {
 		
 	}
 	
+	public ModifierUnResponse adapterModifierUn( ModifierUn request)
+	{
+		String entite=request.getArg0();
+		String champ=request.getArg1();
+		String oldValeur=request.getArg2();
+		String newValeur=request.getArg3();
+		String Numero=request.getArg4();
+		
+		ModifierUnResponse resp = new ModifierUnResponse();
+		resp.setReturn(tbdbm.modifierUn(entite, champ, oldValeur, newValeur,Numero));
+
+		
+		return resp;
+		
+	}
+	
+	public ModifierEcrireResponse adapterModifierEcrire( ModifierEcrire request)
+	{
+		String numero=request.getArg3();
+		String champ=request.getArg0();
+		String oldValeur=request.getArg1();
+		String newValeur=request.getArg2();
+		
+		ModifierEcrireResponse resp = new ModifierEcrireResponse();
+		resp.setReturn(tbdbm.modifierEcrire( champ, oldValeur, newValeur,numero));
+
+		
+		return resp;
+		
+	}
+	
 	public CreateStubAuteurResponse adapterCreateStubAuteur( CreateStubAuteur request)
 	{
 		
@@ -112,6 +160,8 @@ public class TestBaseSoapAdapter {
 		return resp;
 		
 	}
+	
+	
 	
 	
 	

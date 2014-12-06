@@ -27,6 +27,10 @@ public class TestBaseSoapHandler {
 		private static final QName Afficher_QNAME = new QName(NAMESPACE_URI,"afficher");
 		private static final QName SupprimerTout_QNAME = new QName(NAMESPACE_URI,"supprimerTout");
 		private static final QName ModifierTout_QNAME = new QName(NAMESPACE_URI,"modifierTout");
+		private static final QName ModifierUn_QNAME = new QName(NAMESPACE_URI,"modifierUn");
+		private static final QName ModifierEcrire_QNAME = new QName(NAMESPACE_URI,"modifierEcrire");
+		private static final QName CreateLienAuteurLivre_QNAME = new QName(NAMESPACE_URI,"createLienAuteurLivre");
+		
 		
 		private MessageFactory messageFactory;
 		
@@ -90,6 +94,22 @@ public class TestBaseSoapHandler {
 					{
 						response = appelerModifierTout(soapElement);
 					}
+					
+					if (ModifierUn_QNAME.equals(qname))
+					{
+						response = appelerModifierUn(soapElement);
+					}
+					
+					if (ModifierEcrire_QNAME.equals(qname))
+					{
+						response = appelerModifierEcrire(soapElement);
+					}
+					
+					if (CreateLienAuteurLivre_QNAME.equals(qname))
+					{
+						response = appelerCreateLienAuteurLivre(soapElement);
+					}
+					
 				}
 				
 			}
@@ -113,6 +133,24 @@ public class TestBaseSoapHandler {
 
 
 		
+		private Object appelerCreateLienAuteurLivre(SOAPElement soapElement) {
+			CreateLienAuteurLivre createLienAuteurLivre = JAXB.unmarshal(new DOMSource(soapElement), CreateLienAuteurLivre.class);
+			return adapter.adapterCreateLienAuteurLivre(createLienAuteurLivre);
+		}
+
+
+		private Object appelerModifierEcrire(SOAPElement soapElement) {
+			ModifierEcrire modifierEcrire = JAXB.unmarshal(new DOMSource(soapElement), ModifierEcrire.class);
+			return adapter.adapterModifierEcrire(modifierEcrire);
+		}
+
+
+		private Object appelerModifierUn(SOAPElement soapElement) {
+			ModifierUn modifierUn =  JAXB.unmarshal(new DOMSource(soapElement), ModifierUn.class);
+			return adapter.adapterModifierUn(modifierUn);
+		}
+
+
 		private Object appelerAdditionner(SOAPElement soapElement) {
 			Additionner additionner = JAXB.unmarshal(new DOMSource(soapElement), Additionner.class);
 			return adapter.adapterAdditionner(additionner);

@@ -6,4 +6,4 @@ gaeHrdEnabled=true
 gaeLaunchAppInBrowser=true
 googleCloudSqlEnabled=false
 localDevMySqlEnabled=true
-validationExclusions=src/com/testBase/fonctionWebService/TestBaseDBManager.java
+validationExclusions=src/com/testBase/fonctionWebService/TestBaseDBManager.java|src/com/testBase/fonctionWebService/TestBaseDBManagerServiceLocator.java

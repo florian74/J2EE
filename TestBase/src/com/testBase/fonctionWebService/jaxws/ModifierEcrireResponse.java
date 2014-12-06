@@ -7,20 +7,20 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlRootElement(name = "afficherResponse", namespace = "http://fonctionWebService.testBase.com/")
+@XmlRootElement(name = "modifierEcrireResponse", namespace = "http://fonctionWebService.testBase.com/")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "afficherResponse", namespace = "http://fonctionWebService.testBase.com/")
-public class AfficherResponse {
+@XmlType(name = "modifierEcrireResponse", namespace = "http://fonctionWebService.testBase.com/")
+public class ModifierEcrireResponse {
 
-    @XmlElement(name = "return", namespace = "", nillable = true)
-    private String[] _return;
+    @XmlElement(name = "return", namespace = "")
+    private String _return;
 
     /**
      * 
      * @return
-     *     returns String[]
+     *     returns String
      */
-    public String[] getReturn() {
+    public String getReturn() {
         return this._return;
     }
 
@@ -29,7 +29,7 @@ public class AfficherResponse {
      * @param _return
      *     the value for the _return property
      */
-    public void setReturn(String[] _return) {
+    public void setReturn(String _return) {
         this._return = _return;
     }
 

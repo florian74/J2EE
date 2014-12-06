@@ -4,15 +4,19 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
-	<servlet>
-		<servlet-name>TestBase</servlet-name>
-		<servlet-class>com.testBase.TestBaseServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TestBase</servlet-name>
-		<url-pattern>/TestBaseDBManagerService</url-pattern>
-	</servlet-mapping>
-	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list>
+<servlet>
+<servlet-name>TestBase</servlet-name>
+<servlet-class>com.testBase.TestBaseServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+<servlet-name>TestBase</servlet-name>
+<url-pattern>/TestBaseDBServiceService</url-pattern>
+</servlet-mapping>
+<welcome-file-list>
+<welcome-file>index.html</welcome-file>
+</welcome-file-list>
 </web-app>
+
+
+
+

@@ -1,5 +1,5 @@
 cd C:\Users\Florian\Documents\GitHub\J2EE\J2EE\testb\TestBase
-set class=com.testBase.fonctionWebService.TestBaseDBManager
+set class=com.testBase.fonctionWebService.TestBaseDBService
 set clpth=./war/WEB-INF/classes
 set resourcedir=./war
 set outsourcedir=./src
