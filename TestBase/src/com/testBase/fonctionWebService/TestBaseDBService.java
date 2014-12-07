@@ -135,9 +135,14 @@ public class TestBaseDBService {
 				Query requete3 = new Query("T_Livre").addFilter("Numero", FilterOperator.EQUAL, newValeur);
 				PreparedQuery resultat3 = ds.prepare(requete3);
 				
+	
+				// verifier si le livre a déjà un auteur
+				Query requete5 = new Query("L_Ecrire").addFilter("NumeroLivre", FilterOperator.EQUAL, newValeur);
+				PreparedQuery resultat5 = ds.prepare(requete5);
+				
 				// tester si la valeur a modifier est valide
 				if (! ((resultat2.countEntities() != 0 && champ == "NumeroAuteur" )||( champ == "NumeroLivre" && resultat3.countEntities() != 0))) break;
-				
+				if (resultat5.countEntities() != 0 && champ == "NumeroLivre" ) break;
 				
 				//modification
 				// sauvegarde des propriétés
