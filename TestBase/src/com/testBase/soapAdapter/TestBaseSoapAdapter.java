@@ -135,13 +135,12 @@ public class TestBaseSoapAdapter {
 	
 	public ModifierEcrireResponse adapterModifierEcrire( ModifierEcrire request)
 	{
-		String numero=request.getArg3();
+		String numero=request.getArg2();
 		String champ=request.getArg0();
-		String oldValeur=request.getArg1();
-		String newValeur=request.getArg2();
+		String newValeur=request.getArg1();
 		
 		ModifierEcrireResponse resp = new ModifierEcrireResponse();
-		resp.setReturn(tbdbm.modifierEcrire( champ, oldValeur, newValeur,numero));
+		resp.setReturn(tbdbm.modifierEcrire( champ, newValeur,numero));
 
 		
 		return resp;

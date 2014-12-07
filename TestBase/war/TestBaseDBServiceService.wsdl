@@ -6,17 +6,17 @@
       <xsd:import namespace="http://fonctionWebService.testBase.com/" schemaLocation="TestBaseDBServiceService_schema1.xsd"/>
     </xsd:schema>
   </types>
-  <message name="createStubAuteur">
-    <part name="parameters" element="tns:createStubAuteur"/>
-  </message>
-  <message name="createStubAuteurResponse">
-    <part name="parameters" element="tns:createStubAuteurResponse"/>
-  </message>
   <message name="createLienAuteurLivre">
     <part name="parameters" element="tns:createLienAuteurLivre"/>
   </message>
   <message name="createLienAuteurLivreResponse">
     <part name="parameters" element="tns:createLienAuteurLivreResponse"/>
+  </message>
+  <message name="createStubAuteur">
+    <part name="parameters" element="tns:createStubAuteur"/>
+  </message>
+  <message name="createStubAuteurResponse">
+    <part name="parameters" element="tns:createStubAuteurResponse"/>
   </message>
   <message name="modifierUn">
     <part name="parameters" element="tns:modifierUn"/>
@@ -67,13 +67,13 @@
     <part name="parameters" element="tns:additionnerResponse"/>
   </message>
   <portType name="TestBaseDBService">
-    <operation name="createStubAuteur">
-      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBService/createStubAuteurRequest" message="tns:createStubAuteur"/>
-      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBService/createStubAuteurResponse" message="tns:createStubAuteurResponse"/>
-    </operation>
     <operation name="createLienAuteurLivre">
       <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBService/createLienAuteurLivreRequest" message="tns:createLienAuteurLivre"/>
       <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBService/createLienAuteurLivreResponse" message="tns:createLienAuteurLivreResponse"/>
+    </operation>
+    <operation name="createStubAuteur">
+      <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBService/createStubAuteurRequest" message="tns:createStubAuteur"/>
+      <output wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBService/createStubAuteurResponse" message="tns:createStubAuteurResponse"/>
     </operation>
     <operation name="modifierUn">
       <input wsam:Action="http://fonctionWebService.testBase.com/TestBaseDBService/modifierUnRequest" message="tns:modifierUn"/>
@@ -110,7 +110,7 @@
   </portType>
   <binding name="TestBaseDBServicePortBinding" type="tns:TestBaseDBService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document"/>
-    <operation name="createStubAuteur">
+    <operation name="createLienAuteurLivre">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
@@ -119,7 +119,7 @@
         <soap:body use="literal"/>
       </output>
     </operation>
-    <operation name="createLienAuteurLivre">
+    <operation name="createStubAuteur">
       <soap:operation soapAction=""/>
       <input>
         <soap:body use="literal"/>
